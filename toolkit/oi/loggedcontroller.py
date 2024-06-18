@@ -1,10 +1,22 @@
-# xbox_controller_wrapper.py
+# A subclass of the XboxController class
+# that allows for state of the controller to
+# be logged.
+
 from wpilib import XboxController, DataLogManager
 from wpiutil.log import DataLog, FloatLogEntry, BooleanLogEntry, StringLogEntry
 
 
-class XboxControllerWrapper(XboxController):
+class LoggedXboxController(XboxController):
+    """
+    A subclass of XboxController whose state can be logged.
+    """
     def __init__(self, name, port):
+        """
+        Initializer for LoggedXboxController.
+
+        :param name: The name of the XboxController. Name will be used in logs.
+        :param port: The port of the XboxController.
+        """
         super().__init__(port)
         self.name = name
         self.data_log=DataLogManager.getLog()
@@ -35,32 +47,36 @@ class XboxControllerWrapper(XboxController):
         #self.logPOVLeftButton = BooleanLogEntry(self.data_log, base_path + "POVLeftButton")
 
 
-    def logState(self):
+    def logState(self, timestamp=0):
+        """
+        Log the state of the XboxController.
 
+        :param timestamp: The timestamp of the state.
 
+        """
         # Log axis states
-        self.logLeftX.append(self.getLeftX())
-        self.logLeftY.append(self.getLeftY())
-        self.logRightX.append(self.getRightX())
-        self.logRightY.append(self.getRightY())
-        self.logLeftTriggerAxis.append(self.getLeftTriggerAxis())
-        self.logRightTriggerAxis.append(self.getRightTriggerAxis())
-        self.logPOVValues.append(self.getPOV())
+        self.logLeftX.append(self.getLeftX(), timestamp)
+        self.logLeftY.append(self.getLeftY(), timestamp)
+        self.logRightX.append(self.getRightX(), timestamp)
+        self.logRightY.append(self.getRightY(), timestamp)
+        self.logLeftTriggerAxis.append(self.getLeftTriggerAxis(), timestamp)
+        self.logRightTriggerAxis.append(self.getRightTriggerAxis(), timestamp)
+        self.logPOVValues.append(self.getPOV(), timestamp)
 
 
         # Log button states
-        self.logAButton.append(self.getAButton())
-        self.logBButton.append(self.getBButton())
-        self.logXButton.append(self.getXButton())
-        self.logYButton.append(self.getYButton())
-        self.logLeftBumper.append(self.getLeftBumper())
-        self.logRightBumper.append(self.getRightBumper())
-        self.logBackButton.append(self.getBackButton())
-        self.logStartButton.append(self.getStartButton())
-        self.logLeftStickButtonPressed.append(self.getLeftStickButtonPressed())
-        self.logRightStickButtonPressed.append(self.getRightStickButtonPressed())
-        self.logLeftStickButtonReleased.append(self.getLeftStickButtonReleased())
-        self.logRightStickButtonReleased.append(self.getRightStickButtonReleased())
+        self.logAButton.append(self.getAButton(), timestamp)
+        self.logBButton.append(self.getBButton(), timestamp)
+        self.logXButton.append(self.getXButton(), timestamp)
+        self.logYButton.append(self.getYButton(), timestamp)
+        self.logLeftBumper.append(self.getLeftBumper(), timestamp)
+        self.logRightBumper.append(self.getRightBumper(), timestamp)
+        self.logBackButton.append(self.getBackButton(), timestamp)
+        self.logStartButton.append(self.getStartButton(), timestamp)
+        self.logLeftStickButtonPressed.append(self.getLeftStickButtonPressed(), timestamp)
+        self.logRightStickButtonPressed.append(self.getRightStickButtonPressed(), timestamp)
+        self.logLeftStickButtonReleased.append(self.getLeftStickButtonReleased(), timestamp)
+        self.logRightStickButtonReleased.append(self.getRightStickButtonReleased(), timestamp)
         #self.logPOVUpButton.append(self.POVUp())
         self.data_log.flush()
 

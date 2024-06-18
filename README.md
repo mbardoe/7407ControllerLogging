@@ -25,3 +25,31 @@ As always you may need to install `robotpy`. To do this
     ```
 
 ### Setting up `robot.py`
+
+In `robot.py` we use the WPILib DataLogManager to create a log, and to use the `startDataLog` method
+to record the DS control and joystick data (but it doesn't seem that the xboxcontroller is being recorded).
+We will log the inputs of the controllers. To do this we subclass the `Xboxcontroller` class in WPILib, and 
+this we will create a method called, `logState`. This method can take a timestamp and add it to the log
+for the following values of the XboxController:
+
+| State Variable           | Type|
+|--------------------------|-----|
+| LeftX                    | float|
+| LeftY                    | float|
+| RightX                   | float|
+| RightY                   | float|
+| LeftTriggerAxis          | float|
+| RightTriggerAxis         | float|
+| POVValues                | float|
+| AButton                  | boolean|
+| BButton                  | boolean|
+| XButton                  | boolean|
+| YButton                  | boolean|
+| LeftBumper               | boolean|
+| RightBumper              | boolean|
+| BackButton               | boolean|
+| StartButton              | boolean|
+| LeftStickButtonPressed   | boolean|
+| LeftStickButtonReleased  | boolean|
+| RightStickButtonPressed  | boolean|
+| RightStickButtonReleased | boolean|
