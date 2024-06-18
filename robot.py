@@ -1,8 +1,8 @@
 #
 from wpilib import DataLogManager, DriverStation
-from toolkit.oi.controllermap import XboxControllerWrapper
+from toolkit.oi.loggedcontroller import XboxControllerWrapper
 
-from commands2 import TimedCommandRobot
+from commands2 import TimedCommandRobot, CommandScheduler
 
 class SimRobot(TimedCommandRobot):
     def __init__(self):
@@ -21,7 +21,7 @@ class SimRobot(TimedCommandRobot):
 
         # Initialize the Xbox controller wrappers with names (assuming ports 0 and 1 for two controllers)
         self.controller_wrappers.append(XboxControllerWrapper("Driver", 0))
-        self.controller_wrappers.append(XboxControllerWrapper("Operator", 1))
+        #self.controller_wrappers.append(XboxControllerWrapper("Operator", 1))
 
     def teleopInit(self):
         pass
