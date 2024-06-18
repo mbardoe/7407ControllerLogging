@@ -53,3 +53,14 @@ for the following values of the XboxController:
 | LeftStickButtonReleased  | boolean|
 | RightStickButtonPressed  | boolean|
 | RightStickButtonReleased | boolean|
+
+### Drive Sim
+
+We want to setup a swerve drive that is logged as well, in the way similar to what is happening with AdvantageKit.
+We will need to create an "interface" that describes the methods that come from a motor or a simulated motor. Those
+values are logged regularly. We will look to take the swerve drive from 7407's swerve drive subsystem and commands. Then
+we will make changes to that so that it can be logged regularly.
+
+#### Changes to the swerve drive from 7407 2024
+
+
