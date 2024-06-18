@@ -1,0 +1,11 @@
+# Ignore Python compiled files
+*.pyc
+__pycache__/
+
+# Ignore environment directories
+venv/
+env/
+
+# Ignore IntelliJ/PyCharm project files
+.idea/
+*.iml
