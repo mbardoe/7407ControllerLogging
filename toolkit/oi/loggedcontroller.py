@@ -15,8 +15,9 @@ class XboxControllerWrapper(XboxController):
         self.logRightY=FloatLogEntry(self.data_log, base_path+"RightY")
         self.logLeftTriggerAxis=FloatLogEntry(self.data_log, base_path+ "LeftTrigger")
         self.logRightTriggerAxis=FloatLogEntry(self.data_log, base_path+ "RightTrigger")
-        self.logAButton=BooleanLogEntry(self.data_log, base_path+"AButton")
+        self.logPOVValues=FloatLogEntry(self.data_log, base_path+ "POVValues")
 
+        self.logAButton=BooleanLogEntry(self.data_log, base_path+"AButton")
         self.logBButton = BooleanLogEntry(self.data_log, base_path + "BButton")
         self.logXButton = BooleanLogEntry(self.data_log, base_path + "XButton")
         self.logYButton = BooleanLogEntry(self.data_log, base_path + "YButton")
@@ -28,6 +29,11 @@ class XboxControllerWrapper(XboxController):
         self.logRightStickButtonPressed = BooleanLogEntry(self.data_log, base_path + "RightStickButtonPressed")
         self.logLeftStickButtonReleased = BooleanLogEntry(self.data_log, base_path + "LeftStickButtonReleased")
         self.logRightStickButtonReleased = BooleanLogEntry(self.data_log, base_path + "RightStickButtonReleased")
+        #self.logPOVUpButton = BooleanLogEntry(self.data_log, base_path + "POVUpButton")
+        #self.logPOVDownButton = BooleanLogEntry(self.data_log, base_path + "POVDownButton")
+        #self.logPOVRightButton = BooleanLogEntry(self.data_log, base_path + "POVRightButton")
+        #self.logPOVLeftButton = BooleanLogEntry(self.data_log, base_path + "POVLeftButton")
+
 
     def logState(self):
 
@@ -39,6 +45,7 @@ class XboxControllerWrapper(XboxController):
         self.logRightY.append(self.getRightY())
         self.logLeftTriggerAxis.append(self.getLeftTriggerAxis())
         self.logRightTriggerAxis.append(self.getRightTriggerAxis())
+        self.logPOVValues.append(self.getPOV())
 
 
         # Log button states
@@ -54,5 +61,7 @@ class XboxControllerWrapper(XboxController):
         self.logRightStickButtonPressed.append(self.getRightStickButtonPressed())
         self.logLeftStickButtonReleased.append(self.getLeftStickButtonReleased())
         self.logRightStickButtonReleased.append(self.getRightStickButtonReleased())
+        #self.logPOVUpButton.append(self.POVUp())
+        self.data_log.flush()
 
 
